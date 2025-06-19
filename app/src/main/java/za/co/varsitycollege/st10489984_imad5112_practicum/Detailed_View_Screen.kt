@@ -1,7 +1,6 @@
 package za.co.varsitycollege.st10489984_imad5112_practicum
 
 import android.content.Intent
-import android.icu.text.CaseMap.Title
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -24,7 +23,7 @@ class Detailed_View_Screen : AppCompatActivity() {
             insets
         }
 
-        //val displaySongs = findViewById<TextView>(R.id.displaySongs)
+        val displaySongs = findViewById<TextView>(R.id.displaySongs)
         val songsListButton = findViewById<Button>(R.id.songsListButton)
         val calculateAverageButton = findViewById<Button>(R.id.calculateAverageButton)
         val mainScreenButton = findViewById<Button>(R.id.mainScreenButton)
@@ -39,31 +38,61 @@ class Detailed_View_Screen : AppCompatActivity() {
 
         songsListButton?.setOnClickListener {
             if (Title.isEmpty() || Artist.isEmpty() || Rating.isEmpty() || Comments.isEmpty()) {
-                Toast.makeText(this, "Please make sure that you've entered all data", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "Please make sure that you've entered all data",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            val songsOutput = StringBuilder()
+            val itemCount = Title.size
+            for (i in 0 until itemCount) {
+                val title = Title[i]
+                val artist = Artist[i]
+                val rating = Rating[i]
+                val comments = Comments[i]
+
+                if (title.isNotEmpty() && artist.isNotEmpty() && rating.isNotEmpty() && comments.isNotEmpty()) {
+                    songsOutput.append("Title: ${title}\n")
+                    songsOutput.append("Artist: ${artist}")
+                    songsOutput.append("Rating: ${rating}")
+                    songsOutput.append("Comments: ${comments}")
+                }
+
+                displaySongs.text = songsOutput.toString()
+
+//
+//        calculateAverageButton.setOnClickListener {
+//            // TODO: Implement logic to calculate average rating
+//            // You'll need to iterate through songRatings, parse them to numbers,
+//            // sum them up, and divide by the count of valid ratings.
+//            // Handle cases where ratings might be null, empty, or not valid numbers.
+//            Toast.makeText(this, "Calculate average: Not yet implemented", Toast.LENGTH_SHORT).show()
+
 
             }
 
-            var displaySongs = ""
-            var counter = 0
+            calculateAverageButton?.setOnClickListener {
+                var totalRating = 0.0
+                val itemCount = Title.size
+                for (i in 0 until itemCount) {
+                    val rating = Rating[i]
+                    if (rating.isNotEmpty()) {
+                        totalRating += rating.toDouble()
+                        val averageRating = totalRating / itemCount
+                        displaySongs.text = "Average Rating: $averageRating"
 
-//            for ((Title in Title) && (Artist in Artist) && (Rating in Rating) && (Comments in Comments)) {
-//                displaySongs += "${Title[counter]}"
-//                displaySongs += "${Artist[counter]}""
-//                displaySongs += "${Rating[counter]}"
-//                displaySongs += "${Comments[counter]}"
-//            }
+                    } else {
+                        displaySongs.text = "No valid ratings available"
+                    }
 
+                }
+            }
 
-
-        }
-
-        calculateAverageButton?.setOnClickListener {
-
-        }
-
-        mainScreenButton?.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            mainScreenButton?.setOnClickListener {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     //array that stores all the names of artists
     val Artists = arrayOf<String>("","","","")
     //array that stores the ratings of the song from the user
-    val Rating = arrayOf<String>("","","","")
+    val Rating = intArrayOf()
     //array that stores the comments from the user about the song
     val Comments = arrayOf<String>("","","","")
 
@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         val nextPageButton = findViewById<Button>(R.id.nextPageButton)
         val exitAppButton = findViewById<Button>(R.id.exitAppButton)
 
+        //assigning the values of the edit texts to variables
         val title=titleEditText.text.toString()
         val artist=artistNameEditText.text.toString()
         val rating=ratingEditText.text.toString()
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             if (currentSongIndex >= maxSongs) {
                 Title[currentSongIndex] = title
                 Artists[currentSongIndex] = artist
-                Rating[currentSongIndex] = rating
+                Rating[currentSongIndex] = rating.toInt()
                 Comments[currentSongIndex] = comments
                 currentSongIndex++
 
@@ -67,6 +68,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
+            //checking if the edit texts are empty
             if (title.isEmpty() || artist.isEmpty() || rating.isEmpty() || comments.isEmpty()) {
                 val builder=AlertDialog.Builder(this)
                 builder.setTitle("Missing Input")
