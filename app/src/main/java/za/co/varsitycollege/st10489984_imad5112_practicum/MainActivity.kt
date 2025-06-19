@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     val Comments = arrayOf<String>("","","","")
 
     var currentSongIndex = 0
+
+    val maxSongs = 4
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +54,19 @@ class MainActivity : AppCompatActivity() {
 
         //instruction on what the addPlaylist Button will do
         addPlaylistButton?.setOnClickListener {
+            if (currentSongIndex >= maxSongs) {
+                Title[currentSongIndex] = title
+                Artists[currentSongIndex] = artist
+                Rating[currentSongIndex] = rating
+                Comments[currentSongIndex] = comments
+                currentSongIndex++
+
+                Toast.makeText(this, "Song added to playlist!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Playlist is full!", Toast.LENGTH_SHORT).show()
+
+            }
+
             if (title.isEmpty() || artist.isEmpty() || rating.isEmpty() || comments.isEmpty()) {
                 val builder=AlertDialog.Builder(this)
                 builder.setTitle("Missing Input")
@@ -62,13 +78,11 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            currentSongIndex = 0
-            Title[currentSongIndex] = title
-            Artists[currentSongIndex] = artist
-            Rating[currentSongIndex] = rating
-            Comments[currentSongIndex] = comments
 
         }
+
+
+
 
         nextPageButton?.setOnClickListener {
             val intent = Intent(this,Detailed_View_Screen::class.java)

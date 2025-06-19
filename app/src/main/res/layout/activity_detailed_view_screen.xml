@@ -28,4 +28,33 @@
         android:text="TextView"
         tools:layout_editor_absoluteX="64dp"
         tools:layout_editor_absoluteY="174dp" />
+
+    <Button
+        android:id="@+id/calculateAverageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="269dp"
+        android:layout_marginBottom="104dp"
+        android:text="Get Average"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displaySongs" />
+
+    <Button
+        android:id="@+id/mainScreenButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="274dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="104dp"
+        android:text="Back Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/calculateAverageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displaySongs" />
 </androidx.constraintlayout.widget.ConstraintLayout>

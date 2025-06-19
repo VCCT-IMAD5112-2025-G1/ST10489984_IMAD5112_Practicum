@@ -1,5 +1,6 @@
 package za.co.varsitycollege.st10489984_imad5112_practicum
 
+import android.content.Intent
 import android.icu.text.CaseMap.Title
 import android.os.Bundle
 import android.widget.Button
@@ -25,6 +26,8 @@ class Detailed_View_Screen : AppCompatActivity() {
 
         //val displaySongs = findViewById<TextView>(R.id.displaySongs)
         val songsListButton = findViewById<Button>(R.id.songsListButton)
+        val calculateAverageButton = findViewById<Button>(R.id.calculateAverageButton)
+        val mainScreenButton = findViewById<Button>(R.id.mainScreenButton)
 
         val Title = intent.getStringArrayExtra("Title") ?: arrayOf()
         val Artist = intent.getStringArrayExtra("Artist") ?: arrayOf()
@@ -43,16 +46,24 @@ class Detailed_View_Screen : AppCompatActivity() {
             var displaySongs = ""
             var counter = 0
 
-            for (Title in Title) {
-                displaySongs += "${Title[counter]}"
-            }
+//            for ((Title in Title) && (Artist in Artist) && (Rating in Rating) && (Comments in Comments)) {
+//                displaySongs += "${Title[counter]}"
+//                displaySongs += "${Artist[counter]}""
+//                displaySongs += "${Rating[counter]}"
+//                displaySongs += "${Comments[counter]}"
+//            }
 
 
-//            var title= arrayOf<String>("","","","")
-//            var artist= arrayOf<String>("","","","")
-//            var rating= arrayOf<String>("","","","")
-//            var comments= arrayOf<String>("","","","")
 
+        }
+
+        calculateAverageButton?.setOnClickListener {
+
+        }
+
+        mainScreenButton?.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }
