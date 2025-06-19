@@ -84,11 +84,10 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-
         nextPageButton?.setOnClickListener {
             val intent = Intent(this,Detailed_View_Screen::class.java)
 
+            //passing the values of the edit texts to the next activity
             intent.putExtra("Title", Title)
             intent.putExtra("Artist", Artists)
             intent.putExtra("Rating", Rating)
