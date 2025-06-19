@@ -1,5 +1,6 @@
 package za.co.varsitycollege.st10489984_imad5112_practicum
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -12,13 +13,17 @@ import androidx.core.view.setPadding
 
 class MainActivity : AppCompatActivity() {
     // array that stores the title of the songs
-    val title = arrayOf<String>("","","","")
+    val Title = arrayOf<String>("","","","")
     //array that stores all the names of artists
-    val artists = arrayOf<String>("","","","")
+    val Artists = arrayOf<String>("","","","")
     //array that stores the ratings of the song from the user
-    val rating = arrayOf<String>("","","","")
+    val Rating = arrayOf<String>("","","","")
     //array that stores the comments from the user about the song
-    val comments = arrayOf<String>("","","","")
+    val Comments = arrayOf<String>("","","","")
+
+    var currentSongIndex = 0
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -46,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         //instruction on what the addPlaylist Button will do
         addPlaylistButton?.setOnClickListener {
-            if ((title.isEmpty()) && (artist.isEmpty()) && (rating.isEmpty()) && (comments.isEmpty())) {
+            if (title.isEmpty() || artist.isEmpty() || rating.isEmpty() || comments.isEmpty()) {
                 val builder=AlertDialog.Builder(this)
                 builder.setTitle("Missing Input")
                 builder.setMessage("Please double check and make sure all data have been entered.")
@@ -56,6 +61,28 @@ class MainActivity : AppCompatActivity() {
                 builder.show()
                 return@setOnClickListener
             }
+
+            currentSongIndex = 0
+            Title[currentSongIndex] = title
+            Artists[currentSongIndex] = artist
+            Rating[currentSongIndex] = rating
+            Comments[currentSongIndex] = comments
+
+        }
+
+        nextPageButton?.setOnClickListener {
+            val intent = Intent(this,Detailed_View_Screen::class.java)
+
+            intent.putExtra("Title", Title)
+            intent.putExtra("Artist", Artists)
+            intent.putExtra("Rating", Rating)
+            intent.putExtra("Comments", Comments)
+
+            startActivity(intent)
+        }
+
+        exitAppButton?.setOnClickListener {
+            finishAffinity()
         }
     }
 }
