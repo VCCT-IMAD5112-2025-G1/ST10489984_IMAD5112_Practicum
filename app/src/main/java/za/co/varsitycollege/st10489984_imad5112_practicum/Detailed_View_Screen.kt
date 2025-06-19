@@ -61,14 +61,6 @@ class Detailed_View_Screen : AppCompatActivity() {
 
                 displaySongs.text = songsOutput.toString()
 
-//
-//        calculateAverageButton.setOnClickListener {
-//            // TODO: Implement logic to calculate average rating
-//            // You'll need to iterate through songRatings, parse them to numbers,
-//            // sum them up, and divide by the count of valid ratings.
-//            // Handle cases where ratings might be null, empty, or not valid numbers.
-//            Toast.makeText(this, "Calculate average: Not yet implemented", Toast.LENGTH_SHORT).show()
-
 
             }
 
